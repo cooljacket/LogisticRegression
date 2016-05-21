@@ -13,7 +13,7 @@ LogisticRegression::LogisticRegression(const char* fileName, double alpha, int M
 	fstream data(fileName, ios::in);
 	readTrainData(data);
 	data.close();
-	++ColNum;
+	++ColNum;	// 增加第0维
 	theta = vector<double>(ColNum);
 	h_prec = vector<double>(train_x.size());
 }
@@ -33,7 +33,7 @@ void LogisticRegression::readTrainData(fstream& in) {
 		ss >> category;
 		train_y.push_back(category);
 
-		vector<int> row(1, 0);
+		vector<int> row(1, 0);	// 第0维的值也为1
 		while (ss >> value) {
 			row.push_back(value);
 			ColNum = max(value, ColNum);
